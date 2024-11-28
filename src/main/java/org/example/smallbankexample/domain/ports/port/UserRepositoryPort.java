@@ -1,4 +1,4 @@
-package org.example.smallbankexample.domain.ports.out;
+package org.example.smallbankexample.domain.ports.port;
 
 import org.example.smallbankexample.domain.models.User;
 
@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepositoryPort {
-    User save(User user);
+    User create(User user);
     User findUserById(UUID id);
     List<User> findAllUsers();
     Optional<User> findByUsername(String username);

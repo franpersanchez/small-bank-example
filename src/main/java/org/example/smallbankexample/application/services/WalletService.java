@@ -1,15 +1,15 @@
 package org.example.smallbankexample.application.services;
 
+import org.example.smallbankexample.application.usecases.WalletUseCases;
 import org.example.smallbankexample.domain.models.Transaction;
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.models.Wallet;
-import org.example.smallbankexample.domain.ports.in.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public class WalletService implements CreateWalletUseCase, DepositMoneyUseCase, GetBalanceUseCase, TransferMoneyUseCase {
+public class WalletService implements WalletUseCases {
 
     @Override
     public Optional<Wallet> createWallet(User owner) {
