@@ -1,4 +1,4 @@
-package org.example.smallbankexample.domain.models.dto;
+package org.example.smallbankexample.domain.models.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDto {
-    private Long id;
+public class WalletRequest {
+
     private String name;
-    private String email;
 
 }
