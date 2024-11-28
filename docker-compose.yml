@@ -9,6 +9,8 @@ services:
       POSTGRES_DB: smallbank
     ports:
       - "5432:5432"
+    networks:
+      - smallbank-network
 
   app:
     build: .
@@ -16,3 +18,9 @@ services:
       - "8080:8080"
     depends_on:
       - db
+    networks:
+      - smallbank-network
+
+networks:
+  smallbank-network:
+    driver: bridge
