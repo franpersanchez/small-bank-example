@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
+import java.util.stream.Collectors;
 
 
 @Service
@@ -36,31 +36,53 @@ public class UserSpringJpaAdapter implements UserRepositoryPort {
 
     @Override
     public User findUserById(Long id) {
-        return null;
+        Optional<UserEntity> userEntity = userRepository.findById(id);
+        return userEntity.map(userDboMapper::toDomain).orElse(null);
     }
 
     @Override
     public List<User> findAllUsers() {
-        return List.of();
+        List<UserEntity> userEntities = userRepository.findAll();
+        return userEntities.stream()
+                .map(userDboMapper::toDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
-        return Optional.empty();
+    public User findByName(String username) {
+        Optional<UserEntity> userEntity = userRepository.findByName(username);
+        return userEntity.map(userDboMapper::toDomain).orElse(null);
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return Optional.empty();
+    public User findByEmail(String email) {
+        Optional<UserEntity> userEntity = userRepository.findByEmail(email);
+        return userEntity.map(userDboMapper::toDomain).orElse(null);
     }
 
     @Override
-    public Optional<User> update(User user) {
-        return Optional.empty();
+    public User update(User user) {
+        Optional<UserEntity> userFound = userRepository.findById(user.getId());
+        if (userFound.isPresent()) {
+            UserEntity userEntity = userFound.get();
+            userEntity.setName(user.getName());
+            userEntity.setEmail(user.getEmail());
+            userEntity.setPassword(user.getPassword());
+
+            userRepository.save(userEntity);
+
+            return userDboMapper.toDomain(userEntity);
+        }
+        return null;
     }
 
     @Override
     public boolean deleteUserById(Long id) {
+        Optional<UserEntity> userFound = userRepository.findById(id);
+        if (userFound.isPresent()) {
+            userRepository.delete(userFound.get());
+            return true;
+        }
         return false;
     }
 }

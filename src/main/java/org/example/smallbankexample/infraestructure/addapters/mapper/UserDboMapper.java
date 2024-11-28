@@ -27,7 +27,7 @@ public class UserDboMapper {
         );
     }
 
-    public static User toDomain(UserEntity userEntity) {
+    public User toDomain(UserEntity userEntity) {
         if (userEntity == null) {
             return null;
         }
