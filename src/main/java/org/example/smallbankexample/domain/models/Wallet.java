@@ -1,16 +1,22 @@
 package org.example.smallbankexample.domain.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.smallbankexample.domain.models.valueObject.Transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 public final class Wallet {
-    private UUID id;
-    private UUID userId;
+    private Long id;
+    private Long userId;
     private BigDecimal balance;
     private List<Transaction> transactions;
 
@@ -32,5 +38,4 @@ public final class Wallet {
         destinationWallet.deposit(amount);
         transactions.add(new Transaction(destinationWallet.getId(), "Transfer to" + destinationWallet.userId, Transaction.TransactionType.WITHDRAWAL, amount, LocalDateTime.now()));
     }
-
 }

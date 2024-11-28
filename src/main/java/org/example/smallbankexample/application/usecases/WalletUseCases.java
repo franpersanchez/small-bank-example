@@ -1,6 +1,6 @@
 package org.example.smallbankexample.application.usecases;
 
-import org.example.smallbankexample.domain.models.Transaction;
+import org.example.smallbankexample.domain.models.valueObject.Transaction;
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.models.Wallet;
 

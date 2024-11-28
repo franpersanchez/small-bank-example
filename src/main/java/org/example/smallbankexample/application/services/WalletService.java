@@ -1,14 +1,16 @@
 package org.example.smallbankexample.application.services;
 
 import org.example.smallbankexample.application.usecases.WalletUseCases;
-import org.example.smallbankexample.domain.models.Transaction;
+import org.example.smallbankexample.domain.models.valueObject.Transaction;
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.models.Wallet;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Service
 public class WalletService implements WalletUseCases {
 
     @Override
