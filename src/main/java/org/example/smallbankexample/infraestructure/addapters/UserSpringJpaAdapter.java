@@ -2,6 +2,8 @@ package org.example.smallbankexample.infraestructure.addapters;
 
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.ports.port.UserRepositoryPort;
+import org.example.smallbankexample.infraestructure.addapters.entities.UserEntity;
+import org.example.smallbankexample.infraestructure.addapters.mapper.UserDboMapper;
 import org.example.smallbankexample.infraestructure.addapters.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 
 @Service
@@ -17,15 +19,19 @@ import java.util.UUID;
 public class UserSpringJpaAdapter implements UserRepositoryPort {
 
     private final UserRepository userRepository;
+    private final UserDboMapper userDboMapper;
 
     @Autowired
-    public UserSpringJpaAdapter(UserRepository userRepository) {
+    public UserSpringJpaAdapter(UserRepository userRepository, UserDboMapper userDboMapper) {
         this.userRepository = userRepository;
+        this.userDboMapper = userDboMapper;
     }
 
     @Override
-    public Optional<User> create(User user) {
-       return Optional.of(userRepository.save(user));
+    public User create(User user) {
+        UserEntity userEntity = UserDboMapper.toDbo(user);
+        userRepository.save(userEntity);
+        return userDboMapper.toDomain(userEntity);
     }
 
     @Override

@@ -30,9 +30,10 @@ public class UserService implements UserUseCases {
     @Override
     public UserDto createUser(UserRequest request) {
         User userRequest = userMapper.toDomain(request);
-        Optional<User> userCreated = userRepositoryPort.create(userRequest);
-        return userCreated.map(UserMapper::toDto).orElseThrow(() ->
-                new RuntimeException("Error al crear el usuario")
-        );
+        User userCreated = userRepositoryPort.create(userRequest);
+        if (userCreated == null) {
+            new RuntimeException("Error when registering new user");
+        }
+        return userMapper.toDto(userCreated);
     }
 }

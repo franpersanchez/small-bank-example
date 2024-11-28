@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.smallbankexample.domain.models.valueObject.Transaction;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +16,6 @@ public final class Wallet {
     private Long id;
     private String name;
     private BigDecimal balance;
-    private List<Transaction> transactions;
+    private Map<String, LocalDateTime> transactions;
 
 }

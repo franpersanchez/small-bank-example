@@ -8,8 +8,10 @@ import lombok.Setter;
 import org.example.smallbankexample.domain.models.User;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "wallets")
@@ -27,8 +29,11 @@ public class WalletEntity {
 
     private BigDecimal balance;
 
-    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TransactionEntity> transactions = new ArrayList<>();
+    @ElementCollection
+    @MapKeyColumn(name = "transaction_id")
+    @Column(name = "transaction_timestamp")
+    @CollectionTable(name = "wallet_transactions", joinColumns = @JoinColumn(name = "wallet_id"))
+    private Map<String, LocalDateTime> transactions;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

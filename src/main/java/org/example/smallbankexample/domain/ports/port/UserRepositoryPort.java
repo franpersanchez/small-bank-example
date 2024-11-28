@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepositoryPort {
-    Optional<User> create(User user);
+    User create(User user);
     User findUserById(Long id);
     List<User> findAllUsers();
     Optional<User> findByUsername(String username);
