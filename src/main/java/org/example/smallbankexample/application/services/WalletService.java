@@ -1,6 +1,7 @@
 package org.example.smallbankexample.application.services;
 
 import org.example.smallbankexample.application.usecases.WalletUseCases;
+import org.example.smallbankexample.domain.models.dto.WalletDto;
 import org.example.smallbankexample.domain.models.valueObject.Transaction;
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.models.Wallet;
@@ -14,8 +15,8 @@ import java.util.Optional;
 public class WalletService implements WalletUseCases {
 
     @Override
-    public Optional<Wallet> createWallet(User owner) {
-        return Optional.empty();
+    public WalletDto createWallet(Long userId) {
+        return null;
     }
 
     @Override

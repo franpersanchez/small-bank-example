@@ -9,10 +9,10 @@ import java.util.UUID;
 public interface WalletRepositoryPort {
 
     Wallet create(Wallet wallet);
-    Optional<Wallet> findWalletById(UUID walletId);
+    Optional<Wallet> findWalletById(Long walletId);
     List<Wallet> findAllWallets();
     Optional<Wallet> update(Wallet wallet);
-    boolean deleteWalletById(UUID walletId);
-    List<Wallet> findByUserId(UUID userId);
+    boolean deleteWalletById(Long walletId);
+    List<Wallet> findByUserId(Long userId);
 
 }

@@ -7,12 +7,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepositoryPort {
-    User create(User user);
-    User findUserById(UUID id);
+    Optional<User> create(User user);
+    User findUserById(Long id);
     List<User> findAllUsers();
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(String email);
     Optional<User> update(User user);
-    boolean deleteUserById(UUID id);
+    boolean deleteUserById(Long id);
 
 }
