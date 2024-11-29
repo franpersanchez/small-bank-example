@@ -18,4 +18,8 @@ public final class Wallet {
     private BigDecimal balance;
     private Map<String, LocalDateTime> transactions;
 
+    public Wallet(String name, BigDecimal zero) {
+        this.name = name;
+        this.balance = zero;
+    }
 }

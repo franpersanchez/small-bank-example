@@ -6,10 +6,7 @@ import org.example.smallbankexample.domain.models.dto.UserDto;
 import org.example.smallbankexample.domain.models.dto.WalletDto;
 import org.example.smallbankexample.domain.models.dto.request.UserRequest;
 import org.example.smallbankexample.domain.models.dto.request.WalletRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/wallets")
@@ -19,6 +16,15 @@ public class WalletController {
 
     public WalletController(WalletService walletService) {
         this.walletService = walletService;
+    }
+
+    @GetMapping()
+    public WalletDto getBalance(@RequestBody WalletRequest walletRequest) {
+        System.out.println("FALLAAAANDOOOOO!!");
+        System.out.println(walletRequest.toString());
+        System.out.println(walletRequest);
+        System.out.println("-------");
+        return walletService.getBalance(walletRequest);
     }
 
     @PostMapping()

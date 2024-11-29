@@ -14,10 +14,8 @@ import java.math.BigDecimal;
 public class WalletMapper {
     public static Wallet toDomain(WalletRequest walletRequest) {
         return new Wallet(
-                null,
                 walletRequest.getName(),
-                BigDecimal.ZERO,
-                null
+                BigDecimal.ZERO
         );
     }
 

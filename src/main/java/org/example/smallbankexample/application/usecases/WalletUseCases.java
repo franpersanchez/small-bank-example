@@ -13,6 +13,6 @@ public interface WalletUseCases {
 
     WalletDto createWallet(WalletRequest walletRequest);
     Optional<Map<String, LocalDateTime>> depositMoney(Wallet destinationWallet, BigDecimal amount, LocalDateTime timestamp);
-    BigDecimal getBalance(Wallet wallet);
+    WalletDto getBalance(WalletRequest walletRequest);
     Optional<Map<String, LocalDateTime>> transferMoney(Wallet originWallet, Wallet destinationWallet, BigDecimal amount, LocalDateTime timeStamp);
 }

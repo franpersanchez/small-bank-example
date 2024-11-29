@@ -11,11 +11,9 @@ public class UserMapper {
 
     public static User toDomain(UserRequest userRequest) {
         return new User(
-                null,
                 userRequest.getUsername(),
                 userRequest.getEmail(),
-                userRequest.getPassword(),
-                null
+                userRequest.getPassword()
         );
     }
 

@@ -23,11 +23,13 @@ public class WalletSpringJpaAdapter implements WalletRepositoryPort {
     private final WalletRepository walletRepository;
     private final WalletDboMapper walletDboMapper;
     private final UserDboMapper userDboMapper;
+    private final WalletMapper walletMapper;
 
-    public WalletSpringJpaAdapter(WalletRepository walletRepository, WalletDboMapper walletDboMapper, UserDboMapper userDboMapper) {
+    public WalletSpringJpaAdapter(WalletRepository walletRepository, WalletDboMapper walletDboMapper, UserDboMapper userDboMapper, WalletMapper walletMapper) {
         this.walletRepository = walletRepository;
         this.walletDboMapper = walletDboMapper;
         this.userDboMapper = userDboMapper;
+        this.walletMapper = walletMapper;
     }
 
     @Override
@@ -35,14 +37,20 @@ public class WalletSpringJpaAdapter implements WalletRepositoryPort {
         UserEntity userEntity = userDboMapper.toDbo(user);
         WalletEntity walletDbo = walletDboMapper.toDbo(wallet, userEntity );
 
-        var savedWallet = walletRepository.save(walletDbo);
+        WalletEntity savedWallet = walletRepository.save(walletDbo);
 
-        return walletDboMapper.toDomain(savedWallet);
+        return WalletDboMapper.toDomain(savedWallet);
     }
 
     @Override
     public Wallet findWalletById(Long walletId) {
-        return null;
+        System.out.println("findWalletById");
+        System.out.println(walletId.toString());
+        WalletEntity walletEntity = walletRepository.findById(walletId).orElse(null);
+        if (walletEntity == null) {
+            return null;
+        }
+        return walletDboMapper.toDomain(walletEntity);
     }
 
     @Override

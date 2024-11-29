@@ -29,7 +29,7 @@ public class UserSpringJpaAdapter implements UserRepositoryPort {
 
     @Override
     public User create(User user) {
-        UserEntity userEntity = UserDboMapper.toDbo(user);
+        UserEntity userEntity = userDboMapper.toDbo(user);
         userRepository.save(userEntity);
         return userDboMapper.toDomain(userEntity);
     }
