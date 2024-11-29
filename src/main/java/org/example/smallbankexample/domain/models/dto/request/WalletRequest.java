@@ -12,5 +12,6 @@ import lombok.Setter;
 public class WalletRequest {
 
     private String name;
+    private Long userId;
 
 }

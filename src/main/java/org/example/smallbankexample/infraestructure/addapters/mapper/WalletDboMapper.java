@@ -3,9 +3,11 @@ package org.example.smallbankexample.infraestructure.addapters.mapper;
 import org.example.smallbankexample.domain.models.Wallet;
 import org.example.smallbankexample.infraestructure.addapters.entities.UserEntity;
 import org.example.smallbankexample.infraestructure.addapters.entities.WalletEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class WalletDboMapper {
 
     public static WalletEntity toDbo(Wallet wallet, UserEntity userEntity) {

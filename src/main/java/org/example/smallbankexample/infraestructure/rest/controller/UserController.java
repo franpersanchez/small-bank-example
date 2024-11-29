@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping()
-    public UserDto create(@RequestBody UserRequest taskRequest){
-        return userService.createUser(taskRequest);
+    public UserDto create(@RequestBody UserRequest userRequest){
+        return userService.createUser(userRequest);
     }
 }
