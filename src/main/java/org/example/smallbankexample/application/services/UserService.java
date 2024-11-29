@@ -14,18 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-
-import java.util.Optional;
-
 @Service
 public class UserService implements UserUseCases {
 
-    private final UserRepositoryPort userRepositoryPort;
-    private final UserMapper userMapper;
+    UserRepositoryPort userRepositoryPort;
+    UserMapper userMapper;
 
 
     @Autowired
-    public UserService(final UserRepositoryPort userRepositoryPort, UserMapper userMapper) {
+    public UserService(UserRepositoryPort userRepositoryPort, UserMapper userMapper) {
         this.userRepositoryPort = userRepositoryPort;
         this.userMapper = userMapper;
     }
@@ -38,12 +35,12 @@ public class UserService implements UserUseCases {
 
         if (existingUserByUsername != null) {
             throw new UserException(HttpStatus.BAD_REQUEST,
-                    String.format(UserConstant.USER_HAS_USERNAME_AREADY_REGISTERED, userRequest.getName()));
+                    String.format(UserConstant.USER_HAS_USERNAME_ALREADY_REGISTERED, userRequest.getName()));
         }
 
         if (existingUserByEmail != null) {
             throw new UserException(HttpStatus.BAD_REQUEST,
-                    String.format(UserConstant.USER_HAS_EMAIL_AREADY_REGISTERED, userRequest.getEmail()));
+                    String.format(UserConstant.USER_HAS_EMAIL_ALREADY_REGISTERED, userRequest.getEmail()));
         }
         User userCreated = userRepositoryPort.create(userRequest);
         if (userCreated == null) {

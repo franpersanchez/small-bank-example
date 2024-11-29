@@ -1,11 +1,13 @@
 package org.example.smallbankexample.domain.ports.port;
 
 import org.example.smallbankexample.domain.models.Wallet;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 public interface WalletRepositoryPort {
 
     Wallet create(Wallet wallet);
