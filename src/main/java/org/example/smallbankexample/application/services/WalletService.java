@@ -1,5 +1,6 @@
 package org.example.smallbankexample.application.services;
 
+import org.example.smallbankexample.application.mapper.WalletMapper;
 import org.example.smallbankexample.application.usecases.WalletUseCases;
 import org.example.smallbankexample.domain.models.dto.WalletDto;
 import org.example.smallbankexample.domain.models.Wallet;
@@ -15,11 +16,11 @@ import java.util.Optional;
 public class WalletService implements WalletUseCases {
 
     private final WalletRepositoryPort walletRepository;
-    private final WalletDboMapper walletDboMapper;
+    private final WalletMapper walletMapper;
 
-    public WalletService(WalletRepositoryPort walletRepository, WalletDboMapper walletDboMapper) {
+    public WalletService(WalletRepositoryPort walletRepository, WalletMapper walletMapper) {
         this.walletRepository = walletRepository;
-        this.walletDboMapper = walletDboMapper;
+        this.walletMapper = walletMapper;
     }
 
     @Override

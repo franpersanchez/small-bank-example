@@ -11,9 +11,9 @@ import java.util.UUID;
 public interface WalletRepositoryPort {
 
     Wallet create(Wallet wallet);
-    Optional<Wallet> findWalletById(Long walletId);
+    Wallet findWalletById(Long walletId);
     List<Wallet> findAllWallets();
-    Optional<Wallet> update(Wallet wallet);
+    Wallet update(Wallet wallet);
     boolean deleteWalletById(Long walletId);
     List<Wallet> findByUserId(Long userId);
 
