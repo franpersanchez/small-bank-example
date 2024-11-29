@@ -19,6 +19,7 @@ public class WalletMapper {
 
     public static WalletDto toDto(Wallet wallet) {
         return new WalletDto(
+                wallet.getId(),
                 wallet.getName(),
                 wallet.getBalance()
         );

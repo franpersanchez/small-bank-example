@@ -10,4 +10,5 @@ public interface UserService {
     UserDto createUser(UserRequest userRequest);
     List<UserDto> getAll();
     UserDto getById(long id);
+    UserDto assignWallet(Long id, Long walletId);
 }

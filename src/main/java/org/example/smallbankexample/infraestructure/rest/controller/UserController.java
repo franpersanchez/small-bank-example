@@ -23,6 +23,11 @@ public class UserController {
         return userService.createUser(userRequest);
     }
 
+    @PostMapping("/{id}/{wallet}")
+    public UserDto assignWallet(@PathVariable Long id , @PathVariable Long wallet){
+        return userService.assignWallet(id, wallet);
+    }
+
     @GetMapping
     public List<UserDto> getAll() {
         return userService.getAll();
