@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserUseCases {
 
-    UserRepositoryPort userRepositoryPort;
-    UserMapper userMapper;
+    private final UserRepositoryPort userRepositoryPort;
+    private final UserMapper userMapper;
 
 
     @Autowired
@@ -48,6 +48,5 @@ public class UserService implements UserUseCases {
                     String.format(UserConstant.ERROR_OCCURRED_ON_USER_CREATION, userRequest.getName()));
         }
         return userMapper.toDto(userCreated);
-
     }
 }

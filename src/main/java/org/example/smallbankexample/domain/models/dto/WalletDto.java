@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -12,6 +14,6 @@ import lombok.Setter;
 public class WalletDto {
     private Long id;
     private String name;
-    private Long balance;
+    private BigDecimal balance;
 
 }
