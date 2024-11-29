@@ -7,31 +7,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "wallets")
+@Table(name = "transactions")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class WalletEntity {
+public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private BigDecimal amount;
 
-    private BigDecimal balance;
+    private String description;
 
-    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<TransactionEntity> transactions = new ArrayList<>();
+    private LocalDateTime transactionDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "wallet_id")
+    private WalletEntity wallet;
 
 }
-

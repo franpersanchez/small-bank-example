@@ -6,6 +6,8 @@ import org.example.smallbankexample.domain.models.dto.WalletDto;
 import org.example.smallbankexample.domain.models.dto.request.WalletRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -31,6 +33,16 @@ public class WalletController {
     @GetMapping
     public List<WalletDto> getAll() {
         return walletService.getAllWallets();
+    }
+
+    @PutMapping("/deposit/{id}/{amount}")
+    public WalletDto depositMoney(@PathVariable long id, @PathVariable BigDecimal amount) {
+        return walletService.depositMoney(id, amount, LocalDateTime.now());
+    }
+
+    @PutMapping("/transfer/{idOrigin}/{amount}/{idDestination}")
+    public WalletDto transferMoney(@PathVariable long idOrigin, @PathVariable BigDecimal amount, @PathVariable long idDestination) {
+        return walletService.transferMoney(idOrigin, amount, idDestination, LocalDateTime.now());
     }
 
 

@@ -16,9 +16,6 @@ public interface WalletRepositoryPort {
     Wallet findWalletById(long walletId);
     Wallet save(Wallet wallet);
 
-    Wallet findWalletById(Long walletId);
-
     List<Wallet> findAllWallets();
 
-    Wallet update(Wallet wallet);
 }

@@ -6,16 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class WalletDto {
+public class TransactionDto {
+
     private Long id;
-    private String name;
-    private BigDecimal balance;
-    private List<TransactionDto> transactions;
+    private BigDecimal amount;
+    private String description;
+    private LocalDateTime transactionDate;
+
+
 }

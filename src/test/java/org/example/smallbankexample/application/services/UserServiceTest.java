@@ -29,7 +29,7 @@ public class UserServiceTest {
     UserMapper userMapper;
 
     @InjectMocks
-    UserService userService;
+    UserManagementService userManagementService;
 
     private UserRequest userRequest;
     private User userDomain;
@@ -41,16 +41,16 @@ public class UserServiceTest {
 
         userRequest = new UserRequest("franpersanchez", "franpersanchez@gmail.com", "password1234");
         userDomain = new User(1L, "franpersanchez", "franpersanchez@gmail.com", "password1234", null);
-        userDto = new UserDto(1L, "franpersanchez", "franpersanchez@gmail.com");
+        userDto = new UserDto(1L, "franpersanchez", "franpersanchez@gmail.com", null);
 
     }
     @Test
     void createUser_success() {
-        Mockito.when(userRepositoryPort.findByName(any(String.class))).thenReturn(null);
-        Mockito.when(userRepositoryPort.findByEmail(any(String.class))).thenReturn(null);
-        Mockito.when(userRepositoryPort.create(any(User.class))).thenReturn(userDomain);
+        when(userRepositoryPort.findByName(any(String.class))).thenReturn(null);
+        when(userRepositoryPort.findByEmail(any(String.class))).thenReturn(null);
+        when(userRepositoryPort.create(any(User.class))).thenReturn(userDomain);
 
-        UserDto createdUser = userService.createUser(userRequest);
+        UserDto createdUser = userManagementService.createUser(userRequest);
 
         assertNotNull(createdUser);
         assertEquals(userDto.getName(), createdUser.getName());
@@ -63,7 +63,7 @@ public class UserServiceTest {
         when(userRepositoryPort.findByEmail("franpersanchez@gmail.com")).thenReturn(userDomain);
 
         UserException exception = assertThrows(UserException.class, () -> {
-            userService.createUser(userRequest);
+            userManagementService.createUser(userRequest);
         });
 
         assertEquals(HttpStatus.BAD_REQUEST, exception.getErrorCode());
@@ -76,7 +76,7 @@ public class UserServiceTest {
         when(userRepositoryPort.findByEmail("franpersanchez@gmail.com")).thenReturn(null);
 
         UserException exception = assertThrows(UserException.class, () -> {
-            userService.createUser(userRequest);
+            userManagementService.createUser(userRequest);
         });
 
         assertEquals(HttpStatus.BAD_REQUEST, exception.getErrorCode());

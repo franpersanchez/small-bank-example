@@ -35,7 +35,11 @@ public class WalletSpringJpaAdapter implements WalletRepositoryPort {
 
     @Override
     public Wallet findWalletById(long walletId) {
-        return null;
+        WalletEntity walletEntity = walletRepository.findById(walletId).orElse(null);
+        if (walletEntity == null) {
+            return null;
+        }
+        return walletDboMapper.toDomain(walletEntity);
     }
 
     @Override
@@ -45,27 +49,11 @@ public class WalletSpringJpaAdapter implements WalletRepositoryPort {
     }
 
     @Override
-    public Wallet findWalletById(Long walletId) {
-        System.out.println("findWalletById");
-        System.out.println(walletId.toString());
-        WalletEntity walletEntity = walletRepository.findById(walletId).orElse(null);
-        if (walletEntity == null) {
-            return null;
-        }
-        return walletDboMapper.toDomain(walletEntity);
-    }
-
-    @Override
     public List<Wallet> findAllWallets() {
         return walletRepository.findAll()
                 .stream()
                 .map(walletDboMapper::toDomain)
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    @Override
-    public Wallet update(Wallet wallet) {
-        return null;
     }
 
 }
