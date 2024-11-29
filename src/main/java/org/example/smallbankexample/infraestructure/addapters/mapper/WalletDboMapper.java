@@ -24,7 +24,7 @@ public class WalletDboMapper {
         );
     }
 
-    public static Wallet toDomain(WalletEntity walletEntity) {
+    public Wallet toDomain(WalletEntity walletEntity) {
         if (walletEntity == null) {
             return null;
         }

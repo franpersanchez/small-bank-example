@@ -6,13 +6,15 @@ import org.example.smallbankexample.domain.models.dto.request.WalletRequest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface WalletUseCases {
+public interface WalletService {
 
     WalletDto createWallet(WalletRequest walletRequest);
     Optional<Map<String, LocalDateTime>> depositMoney(Wallet destinationWallet, BigDecimal amount, LocalDateTime timestamp);
-    WalletDto getBalance(WalletRequest walletRequest);
+    WalletDto getBalanceById(long id);
     Optional<Map<String, LocalDateTime>> transferMoney(Wallet originWallet, Wallet destinationWallet, BigDecimal amount, LocalDateTime timeStamp);
+    List<WalletDto> getAllWallets();
 }

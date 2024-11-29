@@ -9,6 +9,12 @@ import java.util.stream.Collectors;
 @Component
 public class UserDboMapper {
 
+    private final WalletDboMapper walletDboMapper;
+
+    public UserDboMapper(WalletDboMapper walletDboMapper) {
+        this.walletDboMapper = walletDboMapper;
+    }
+
     public static UserEntity toDbo(User user) {
         if (user == null) {
             return null;
@@ -39,7 +45,7 @@ public class UserDboMapper {
                 userEntity.getPassword(),
                 userEntity.getWallets() != null
                         ? userEntity.getWallets().stream()
-                        .map(WalletDboMapper::toDomain)
+                        .map(walletDboMapper::toDomain)
                         .collect(Collectors.toList())
                         : null
         );

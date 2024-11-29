@@ -13,8 +13,10 @@ import org.example.smallbankexample.infraestructure.addapters.repository.WalletR
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -39,7 +41,7 @@ public class WalletSpringJpaAdapter implements WalletRepositoryPort {
 
         WalletEntity savedWallet = walletRepository.save(walletDbo);
 
-        return WalletDboMapper.toDomain(savedWallet);
+        return walletDboMapper.toDomain(savedWallet);
     }
 
     @Override
@@ -55,7 +57,10 @@ public class WalletSpringJpaAdapter implements WalletRepositoryPort {
 
     @Override
     public List<Wallet> findAllWallets() {
-        return List.of();
+        return walletRepository.findAll()
+                .stream()
+                .map(walletDboMapper::toDomain)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override

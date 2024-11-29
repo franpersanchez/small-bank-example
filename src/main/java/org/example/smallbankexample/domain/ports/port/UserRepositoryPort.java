@@ -9,10 +9,10 @@ public interface UserRepositoryPort {
 
     User create(User user);
     User findUserById(Long id);
-    List<User> findAllUsers();
+    List<User> getAll();
+    User getById(long id);
     User findByName(String username);
     User findByEmail(String email);
-    User update(User user);
-    boolean deleteUserById(Long id);
+
 
 }

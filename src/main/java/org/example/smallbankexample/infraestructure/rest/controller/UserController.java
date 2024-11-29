@@ -1,12 +1,12 @@
 package org.example.smallbankexample.infraestructure.rest.controller;
 
-import org.example.smallbankexample.application.services.UserService;
+import org.example.smallbankexample.application.services.UserManagementService;
+import org.example.smallbankexample.application.usecases.UserService;
 import org.example.smallbankexample.domain.models.dto.UserDto;
 import org.example.smallbankexample.domain.models.dto.request.UserRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -21,5 +21,15 @@ public class UserController {
     @PostMapping()
     public UserDto create(@RequestBody UserRequest userRequest){
         return userService.createUser(userRequest);
+    }
+
+    @GetMapping
+    public List<UserDto> getAll() {
+        return userService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public UserDto getById(@PathVariable long id){
+        return userService.getById(id);
     }
 }
