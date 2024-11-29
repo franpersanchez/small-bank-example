@@ -25,11 +25,7 @@ public class UserDboMapper {
                 user.getName(),
                 user.getEmail(),
                 user.getPassword(),
-
-                user.getWallets() != null ? user.getWallets().stream()
-                        .map(wallet -> WalletDboMapper.toDbo(wallet, UserDboMapper.toDbo(user)))
-                        .collect(Collectors.toList())
-                        : null
+                null
         );
     }
 

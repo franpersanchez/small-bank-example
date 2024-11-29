@@ -38,20 +38,14 @@ public class WalletManagementService implements WalletService {
 
     @Override
     public WalletDto createWallet(WalletRequest walletRequest){
-        User user = userRepositoryPort.findUserById(walletRequest.getUserId());
-        if(user == null){
-            throw new WalletException(HttpStatus.BAD_REQUEST,
-                    String.format(WalletConstant.USER_DOES_NOT_EXIST));
-        }
-
-        Wallet w = WalletMapper.toDomain(walletRequest);
-        walletRepositoryPort.create(w, user);
-        return WalletMapper.toDto(w);
+        Wallet wallet = WalletMapper.toDomain(walletRequest);
+        walletRepositoryPort.save(wallet);
+        return WalletMapper.toDto(wallet);
     }
 
     @Override
-    public Optional<Map<String, LocalDateTime>> depositMoney(Wallet destinationWallet, BigDecimal amount, LocalDateTime timestamp) {
-        return Optional.empty();
+    public Map<String, LocalDateTime> depositMoney(Wallet destinationWallet, BigDecimal amount, LocalDateTime timestamp) {
+        return null;
     }
 
     @Override
@@ -65,8 +59,8 @@ public class WalletManagementService implements WalletService {
     }
 
     @Override
-    public Optional<Map<String, LocalDateTime>> transferMoney(Wallet originWallet, Wallet destinationWallet, BigDecimal amount, LocalDateTime timeStamp) {
-        return Optional.empty();
+    public Map<String, LocalDateTime> transferMoney(Wallet originWallet, Wallet destinationWallet, BigDecimal amount, LocalDateTime timeStamp) {
+        return null;
     }
 
     @Override

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public final class Wallet {
     private Long id;
     private String name;
     private BigDecimal balance;
-    private Map<String, LocalDateTime> transactions;
+    private Map<String, LocalDateTime> transactions = new HashMap<>();
 
     public Wallet(String name, BigDecimal zero) {
         this.name = name;

@@ -38,5 +38,6 @@ public class WalletEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
 }
 

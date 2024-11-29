@@ -14,7 +14,4 @@ import java.math.BigDecimal;
 public class WalletDto {
     private String name;
     private BigDecimal balance;
-
-    public WalletDto(Long id, String name, BigDecimal balance) {
-    }
 }

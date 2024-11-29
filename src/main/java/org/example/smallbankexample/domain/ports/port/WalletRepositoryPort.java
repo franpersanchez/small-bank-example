@@ -12,11 +12,13 @@ import java.util.UUID;
 @Repository
 public interface WalletRepositoryPort {
 
-    Wallet create(Wallet wallet, User user);
-    Wallet findWalletById(Long walletId);
-    List<Wallet> findAllWallets();
-    Wallet update(Wallet wallet);
-    boolean deleteWalletById(Long walletId);
-    List<Wallet> findByUserId(Long userId);
 
+    Wallet findWalletById(long walletId);
+    Wallet save(Wallet wallet);
+
+    Wallet findWalletById(Long walletId);
+
+    List<Wallet> findAllWallets();
+
+    Wallet update(Wallet wallet);
 }

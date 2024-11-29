@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Component
 public class WalletDboMapper {
 
-    public static WalletEntity toDbo(Wallet wallet, UserEntity userEntity) {
+    public static WalletEntity toDbo(Wallet wallet) {
         if (wallet == null) {
             return null;
         }
@@ -19,8 +19,8 @@ public class WalletDboMapper {
                 wallet.getId(),
                 wallet.getName(),
                 wallet.getBalance(),
-                wallet.getTransactions(),
-                userEntity
+                null,
+                null
         );
     }
 

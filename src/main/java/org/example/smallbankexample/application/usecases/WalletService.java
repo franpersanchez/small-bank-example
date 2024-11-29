@@ -13,8 +13,8 @@ import java.util.Optional;
 public interface WalletService {
 
     WalletDto createWallet(WalletRequest walletRequest);
-    Optional<Map<String, LocalDateTime>> depositMoney(Wallet destinationWallet, BigDecimal amount, LocalDateTime timestamp);
+    Map<String, LocalDateTime> depositMoney(Wallet destinationWallet, BigDecimal amount, LocalDateTime timestamp);
     WalletDto getBalanceById(long id);
-    Optional<Map<String, LocalDateTime>> transferMoney(Wallet originWallet, Wallet destinationWallet, BigDecimal amount, LocalDateTime timeStamp);
+    Map<String, LocalDateTime> transferMoney(Wallet originWallet, Wallet destinationWallet, BigDecimal amount, LocalDateTime timeStamp);
     List<WalletDto> getAllWallets();
 }

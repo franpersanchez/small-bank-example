@@ -1,6 +1,7 @@
 package org.example.smallbankexample.infraestructure.addapters;
 
 import org.example.smallbankexample.domain.models.User;
+import org.example.smallbankexample.domain.models.Wallet;
 import org.example.smallbankexample.domain.ports.port.UserRepositoryPort;
 import org.example.smallbankexample.infraestructure.addapters.entities.UserEntity;
 import org.example.smallbankexample.infraestructure.addapters.exceptions.UserException;
@@ -69,6 +70,12 @@ public class UserSpringJpaAdapter implements UserRepositoryPort {
     public User findByEmail(String email) {
         Optional<UserEntity> userEntity = userRepository.findByEmail(email);
         return userEntity.map(userDboMapper::toDomain).orElse(null);
+    }
+
+    @Override
+    public User update(User user) {
+        userRepository.save(userDboMapper.toDbo(user));
+        return user;
     }
 
 }

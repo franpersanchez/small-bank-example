@@ -1,6 +1,7 @@
 package org.example.smallbankexample.domain.ports.port;
 
 import org.example.smallbankexample.domain.models.User;
+import org.example.smallbankexample.domain.models.Wallet;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface UserRepositoryPort {
     User getById(long id);
     User findByName(String username);
     User findByEmail(String email);
+    User update(User user);
 
 
 }
