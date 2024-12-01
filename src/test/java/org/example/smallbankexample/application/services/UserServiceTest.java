@@ -40,8 +40,8 @@ public class UserServiceTest {
         MockitoAnnotations.initMocks(this);
 
         userRequest = new UserRequest("franpersanchez", "franpersanchez@gmail.com", "password1234");
-        userDomain = new User(1L, "franpersanchez", "franpersanchez@gmail.com", "password1234", null);
-        userDto = new UserDto(1L, "franpersanchez", "franpersanchez@gmail.com", null);
+        userDomain = new User("franpersanchez", "franpersanchez@gmail.com", "password1234");
+        userDto = new UserDto(1L, "franpersanchez", "franpersanchez@gmail.com", null, "No wallets yet");
 
     }
     @Test

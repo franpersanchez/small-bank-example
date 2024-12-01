@@ -29,5 +29,12 @@ public final class User {
     public void addWallet(Wallet wallet){
         this.wallets.add(wallet);
     }
+
+    public List<Wallet> getWallets() {
+        if (wallets == null) {
+            wallets = new ArrayList<>();
+        }
+        return wallets;
+    }
 }
 

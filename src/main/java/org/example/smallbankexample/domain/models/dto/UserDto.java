@@ -17,5 +17,6 @@ public class UserDto {
     private String name;
     private String email;
     private List<Wallet> wallets;
+    private String walletsInfo;
 
 }
