@@ -5,7 +5,6 @@ import org.example.smallbankexample.domain.models.dto.request.UserRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-
 @Mapper(componentModel = "spring")
 public interface UserRequestMapper {
 

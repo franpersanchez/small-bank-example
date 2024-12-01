@@ -50,7 +50,7 @@ public class WalletManagementService implements WalletService {
         Wallet w = walletRepositoryPort.findWalletById(destinationWalletId);
         if(w == null){
             throw new UserException(HttpStatus.BAD_REQUEST,
-                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, w.getName()));
+                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, destinationWalletId));
         }
 
         Transaction transaction = new Transaction();
@@ -73,7 +73,7 @@ public class WalletManagementService implements WalletService {
         Wallet w = walletRepositoryPort.findWalletById(id);
         if(w == null){
             throw new UserException(HttpStatus.BAD_REQUEST,
-                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, w.getName()));
+                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, id));
         }
         return walletDtoMapper.toDto(w);
 
@@ -86,12 +86,12 @@ public class WalletManagementService implements WalletService {
 
         if (walletFrom == null) {
             throw new UserException(HttpStatus.BAD_REQUEST,
-                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, walletFrom.getName()));
+                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, originalWallet));
         }
 
         if (walletTo == null) {
             throw new UserException(HttpStatus.BAD_REQUEST,
-                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, walletTo.getName()));
+                    String.format(WalletConstant.WALLET_DOES_NOT_EXIST, destinationWallet));
         }
 
         if (walletFrom.getBalance().compareTo(amount) < 0) {

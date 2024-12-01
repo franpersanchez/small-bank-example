@@ -17,4 +17,5 @@ public class WalletDto {
     private String name;
     private BigDecimal balance;
     private List<TransactionDto> transactions;
+
 }
