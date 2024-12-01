@@ -19,23 +19,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private List<Wallet> wallets = new ArrayList<>();
+    private List<Wallet> wallets;
 
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    public void addWallet(Wallet wallet){
-        this.wallets.add(wallet);
-    }
-
-    public List<Wallet> getWallets() {
-        if (wallets == null) {
-            wallets = new ArrayList<>();
-        }
-        return wallets;
-    }
 }
 

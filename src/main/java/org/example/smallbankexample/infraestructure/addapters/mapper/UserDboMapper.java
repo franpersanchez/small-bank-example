@@ -13,7 +13,6 @@ public interface UserDboMapper {
     @Mapping(source = "name", target = "name")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
-    @Mapping(source = "wallets", target = "wallets")
     UserEntity toDbo(User domain);
 
     @InheritInverseConfiguration

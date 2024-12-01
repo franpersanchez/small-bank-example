@@ -27,8 +27,4 @@ public class TransactionEntity {
 
     private LocalDateTime transactionDate;
 
-    @ManyToOne
-    @JoinColumn(name = "wallet_id")
-    private WalletEntity wallet;
-
 }

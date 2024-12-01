@@ -71,18 +71,6 @@ public class UserSpringJpaAdapter implements UserRepositoryPort {
 
     @Override
     public User update(User user) {
-        System.out.println("AQUÍ LLEGA EL USUARIO PARA EL UPDATE:");
-        System.out.println("Nombre: " + user.getName());
-        System.out.println("Email: " + user.getEmail());
-        System.out.println("Contraseña: " + user.getPassword());
-
-        // Verificar si la lista de wallets es nula o vacía
-        if (user.getWallets() == null || user.getWallets().isEmpty()) {
-            System.out.println("No tiene wallets.");
-        } else {
-            System.out.println("Wallets del usuario:");
-            user.getWallets().forEach(wallet -> System.out.println("- " + wallet.getName().toString()));
-        }
         UserEntity userToUpdate = userDboMapper.toDbo(user);
         UserEntity userUpdated = userRepository.save(userToUpdate);
         return userDboMapper.toDomain(userUpdated);

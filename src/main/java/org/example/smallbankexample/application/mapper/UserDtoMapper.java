@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {WalletDtoMapper.class})
 public interface UserDtoMapper {
 
     @Mapping(source = "id", target = "id")

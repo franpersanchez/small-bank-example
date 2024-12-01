@@ -17,10 +17,5 @@ public class Wallet {
     private Long id;
     private String name;
     private BigDecimal balance = BigDecimal.ZERO;
-    private List<Transaction> transactions = new ArrayList<>();
-
-    public Wallet(String name, BigDecimal zero) {
-        this.name = name;
-        this.balance = zero;
-    }
+    private List<Transaction> transactions;
 }

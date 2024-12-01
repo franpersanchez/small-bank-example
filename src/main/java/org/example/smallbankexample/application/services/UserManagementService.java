@@ -90,6 +90,7 @@ public class UserManagementService implements UserService {
             throw new UserException(HttpStatus.NOT_FOUND, String.format(WalletConstant.WALLET_DOES_NOT_EXIST, walletId));
         }
         userFound.getWallets().add(walletFound);
-        return userDtoMapper.toDto(userRepositoryPort.update(userFound));
+        User usedSaved = userRepositoryPort.update(userFound);
+        return userDtoMapper.toDto(usedSaved);
     }
 }
