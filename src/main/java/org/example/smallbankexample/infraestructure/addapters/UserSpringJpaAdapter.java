@@ -1,14 +1,11 @@
 package org.example.smallbankexample.infraestructure.addapters;
 
 import org.example.smallbankexample.domain.models.User;
-import org.example.smallbankexample.domain.models.Wallet;
 import org.example.smallbankexample.domain.ports.port.UserRepositoryPort;
 import org.example.smallbankexample.infraestructure.addapters.entities.UserEntity;
-import org.example.smallbankexample.infraestructure.addapters.exceptions.UserException;
 import org.example.smallbankexample.infraestructure.addapters.mapper.UserDboMapper;
 import org.example.smallbankexample.infraestructure.addapters.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,8 +71,21 @@ public class UserSpringJpaAdapter implements UserRepositoryPort {
 
     @Override
     public User update(User user) {
-        userRepository.save(userDboMapper.toDbo(user));
-        return user;
+        System.out.println("AQUÍ LLEGA EL USUARIO PARA EL UPDATE:");
+        System.out.println("Nombre: " + user.getName());
+        System.out.println("Email: " + user.getEmail());
+        System.out.println("Contraseña: " + user.getPassword());
+
+        // Verificar si la lista de wallets es nula o vacía
+        if (user.getWallets() == null || user.getWallets().isEmpty()) {
+            System.out.println("No tiene wallets.");
+        } else {
+            System.out.println("Wallets del usuario:");
+            user.getWallets().forEach(wallet -> System.out.println("- " + wallet.getName().toString()));
+        }
+        UserEntity userToUpdate = userDboMapper.toDbo(user);
+        UserEntity userUpdated = userRepository.save(userToUpdate);
+        return userDboMapper.toDomain(userUpdated);
     }
 
 }

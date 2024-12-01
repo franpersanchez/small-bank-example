@@ -2,8 +2,10 @@ package org.example.smallbankexample.infraestructure.addapters.mapper;
 
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.infraestructure.addapters.entities.UserEntity;
+import org.example.smallbankexample.infraestructure.addapters.entities.WalletEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -20,13 +22,21 @@ public class UserDboMapper {
             return null;
         }
 
-        return new UserEntity(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getPassword(),
-                null
-        );
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(user.getId());
+        userEntity.setName(user.getName());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setPassword(user.getPassword());
+
+        if (user.getWallets() != null) {
+            List<WalletEntity> walletEntities = user.getWallets().stream()
+                    .map(wallet -> new WalletEntity(wallet.getId(), wallet.getName(), wallet.getBalance(), null, userEntity))
+                    .collect(Collectors.toList());
+            userEntity.setWallets(walletEntities);
+        }
+
+        return userEntity;
+
     }
 
     public User toDomain(UserEntity userEntity) {
