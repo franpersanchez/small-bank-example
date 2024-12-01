@@ -3,6 +3,7 @@ package org.example.smallbankexample.infraestructure.addapters.exceptions;
 import org.springframework.http.HttpStatus;
 
 public class WalletException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
 
     private HttpStatus errorCode;

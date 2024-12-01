@@ -1,6 +1,5 @@
 package org.example.smallbankexample.application.mapper;
 
-
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.models.dto.request.UserRequest;
 import org.mapstruct.Mapper;

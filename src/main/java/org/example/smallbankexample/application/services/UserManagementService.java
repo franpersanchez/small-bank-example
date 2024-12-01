@@ -3,7 +3,6 @@ package org.example.smallbankexample.application.services;
 import org.example.smallbankexample.application.mapper.UserDtoMapper;
 import org.example.smallbankexample.application.mapper.UserRequestMapper;
 import org.example.smallbankexample.application.usecases.UserService;
-
 import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.models.Wallet;
 import org.example.smallbankexample.domain.models.constants.UserConstant;
@@ -11,7 +10,6 @@ import org.example.smallbankexample.domain.models.constants.WalletConstant;
 import org.example.smallbankexample.domain.models.dto.UserDto;
 import org.example.smallbankexample.domain.models.dto.request.UserRequest;
 import org.example.smallbankexample.domain.ports.port.UserRepositoryPort;
-
 import org.example.smallbankexample.domain.ports.port.WalletRepositoryPort;
 import org.example.smallbankexample.infraestructure.addapters.exceptions.UserException;
 import org.springframework.beans.factory.annotation.Autowired;

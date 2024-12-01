@@ -8,7 +8,6 @@ import org.example.smallbankexample.infraestructure.addapters.mapper.WalletDboMa
 import org.example.smallbankexample.infraestructure.addapters.repository.WalletRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

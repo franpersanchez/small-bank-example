@@ -1,6 +1,5 @@
 package org.example.smallbankexample.infraestructure.rest.controller;
 
-import org.example.smallbankexample.application.services.UserManagementService;
 import org.example.smallbankexample.application.usecases.UserService;
 import org.example.smallbankexample.domain.models.dto.UserDto;
 import org.example.smallbankexample.domain.models.dto.request.UserRequest;

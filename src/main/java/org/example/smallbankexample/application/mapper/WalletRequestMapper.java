@@ -1,7 +1,6 @@
 package org.example.smallbankexample.application.mapper;
 
 import org.example.smallbankexample.domain.models.Wallet;
-import org.example.smallbankexample.domain.models.dto.request.UserRequest;
 import org.example.smallbankexample.domain.models.dto.request.WalletRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

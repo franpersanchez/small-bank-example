@@ -1,12 +1,11 @@
 package org.example.smallbankexample.application.services;
 
-import org.example.smallbankexample.application.mapper.UserRequestMapper;
-import org.example.smallbankexample.application.mapper.WalletDtoMapper;
-import org.example.smallbankexample.application.mapper.WalletRequestMapper;
+import org.example.smallbankexample.application.mapper.*;
 import org.example.smallbankexample.application.mapper.WalletRequestMapper;
 import org.example.smallbankexample.application.usecases.WalletService;
 import org.example.smallbankexample.domain.models.Transaction;
 import org.example.smallbankexample.domain.models.constants.WalletConstant;
+import org.example.smallbankexample.domain.models.dto.TransactionDto;
 import org.example.smallbankexample.domain.models.dto.WalletDto;
 import org.example.smallbankexample.domain.models.Wallet;
 import org.example.smallbankexample.domain.models.dto.request.WalletRequest;
@@ -28,13 +27,15 @@ public class WalletManagementService implements WalletService {
     private final WalletDtoMapper walletDtoMapper;
     private final UserRepositoryPort userRepositoryPort;
     private final UserRequestMapper userRequestMapper;
+    private final TransactionDtoMapper transactionDtoMapper;
 
-    public WalletManagementService(WalletRepositoryPort walletRepositoryPort, WalletRequestMapper walletRequestMapper, WalletDtoMapper walletDtoMapper, UserRepositoryPort userRepositoryPort, UserRequestMapper userRequestMapper) {
+    public WalletManagementService(WalletRepositoryPort walletRepositoryPort, WalletRequestMapper walletRequestMapper, WalletDtoMapper walletDtoMapper, UserRepositoryPort userRepositoryPort, UserRequestMapper userRequestMapper, TransactionDtoMapper transactionDtoMapper) {
         this.walletRepositoryPort = walletRepositoryPort;
         this.walletRequestMapper = walletRequestMapper;
         this.walletDtoMapper = walletDtoMapper;
         this.userRequestMapper = userRequestMapper;
         this.userRepositoryPort = userRepositoryPort;
+        this.transactionDtoMapper = transactionDtoMapper;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class WalletManagementService implements WalletService {
     }
 
     @Override
-    public WalletDto depositMoney(long destinationWalletId, BigDecimal amount, LocalDateTime timestamp) {
+    public TransactionDto depositMoney(long destinationWalletId, BigDecimal amount, LocalDateTime timestamp) {
         Wallet w = walletRepositoryPort.findWalletById(destinationWalletId);
         if(w == null){
             throw new UserException(HttpStatus.BAD_REQUEST,
@@ -63,7 +64,7 @@ public class WalletManagementService implements WalletService {
 
         Wallet savedWallet = walletRepositoryPort.save(w);
 
-        return walletDtoMapper.toDto(savedWallet);
+        return transactionDtoMapper.toDto(transaction);
     }
 
 
@@ -79,7 +80,7 @@ public class WalletManagementService implements WalletService {
     }
 
     @Override
-    public WalletDto transferMoney(long originalWallet, BigDecimal amount, long destinationWallet, LocalDateTime timeStamp) {
+    public TransactionDto transferMoney(long originalWallet, BigDecimal amount, long destinationWallet, LocalDateTime timeStamp) {
         Wallet walletFrom = walletRepositoryPort.findWalletById(originalWallet);
         Wallet walletTo = walletRepositoryPort.findWalletById(destinationWallet);
 
@@ -116,7 +117,7 @@ public class WalletManagementService implements WalletService {
         walletRepositoryPort.save(walletFrom);
         walletRepositoryPort.save(walletTo);
 
-        return walletDtoMapper.toDto(walletTo);
+        return transactionDtoMapper.toDto(withdrawalTransaction);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package org.example.smallbankexample.application.mapper;
 
-
 import org.example.smallbankexample.domain.models.Wallet;
 import org.example.smallbankexample.domain.models.dto.WalletDto;
 import org.mapstruct.Mapper;
