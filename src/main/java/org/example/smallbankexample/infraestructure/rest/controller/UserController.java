@@ -23,9 +23,9 @@ public class UserController {
         return userService.createUser(userRequest);
     }
 
-    @PostMapping("/{id}/{wallet}")
-    public UserDto assignWallet(@PathVariable Long id , @PathVariable Long wallet){
-        return userService.assignWallet(id, wallet);
+    @PostMapping("/{id}/{walletId}")
+    public UserDto assignWallet(@PathVariable Long id , @PathVariable Long walletId){
+        return userService.assignWallet(id, walletId);
     }
 
     @GetMapping
