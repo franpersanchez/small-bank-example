@@ -81,7 +81,7 @@ public class UserManagementService implements UserService {
     public UserDto assignWallet(Long id, Long walletId) {
         User userFound = userRepositoryPort.getById(id);
         if (userFound == null) {
-            throw new UserException(HttpStatus.NOT_FOUND, String.format(UserConstant.USER_NOT_FOUND, id));
+            throw new UserException(HttpStatus.NOT_FOUND, String.format(WalletConstant.USER_DOES_NOT_EXIST, id));
         }
         Wallet walletFound = walletRepositoryPort.findWalletById(walletId);
         if (walletFound == null) {
