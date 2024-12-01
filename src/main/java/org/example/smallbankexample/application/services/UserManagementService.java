@@ -1,6 +1,7 @@
 package org.example.smallbankexample.application.services;
 
-import org.example.smallbankexample.application.mapper.UserMapper;
+import org.example.smallbankexample.application.mapper.UserDtoMapper;
+import org.example.smallbankexample.application.mapper.UserRequestMapper;
 import org.example.smallbankexample.application.usecases.UserService;
 
 import org.example.smallbankexample.domain.models.User;
@@ -12,7 +13,6 @@ import org.example.smallbankexample.domain.models.dto.request.UserRequest;
 import org.example.smallbankexample.domain.ports.port.UserRepositoryPort;
 
 import org.example.smallbankexample.domain.ports.port.WalletRepositoryPort;
-import org.example.smallbankexample.infraestructure.addapters.entities.UserEntity;
 import org.example.smallbankexample.infraestructure.addapters.exceptions.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,21 +25,23 @@ import java.util.stream.Collectors;
 public class UserManagementService implements UserService {
 
     private final UserRepositoryPort userRepositoryPort;
-    private final UserMapper userMapper;
+    private final UserDtoMapper userDtoMapper;
+    private final UserRequestMapper userRequestMapper;
     private final WalletRepositoryPort walletRepositoryPort;
 
 
     @Autowired
-    public UserManagementService(UserRepositoryPort userRepositoryPort, UserMapper userMapper, WalletRepositoryPort walletRepositoryPort) {
+    public UserManagementService(UserRepositoryPort userRepositoryPort, UserDtoMapper userDtoMapper, UserRequestMapper userRequestMapper, WalletRepositoryPort walletRepositoryPort) {
         this.userRepositoryPort = userRepositoryPort;
-        this.userMapper = userMapper;
+        this.userDtoMapper = userDtoMapper;
+        this.userRequestMapper = userRequestMapper;
         this.walletRepositoryPort = walletRepositoryPort;
     }
 
     @Override
     public UserDto createUser(UserRequest request) {
-        User userRequest = userMapper.toDomain(request);
-        User existingUserByUsername = userRepositoryPort.findByName(request.getUsername());
+        User userRequest = userRequestMapper.toDomain(request);
+        User existingUserByUsername = userRepositoryPort.findByName(request.getName());
         User existingUserByEmail = userRepositoryPort.findByEmail(request.getEmail());
 
         if (existingUserByUsername != null) {
@@ -56,7 +58,7 @@ public class UserManagementService implements UserService {
             throw new UserException(HttpStatus.INTERNAL_SERVER_ERROR,
                     String.format(UserConstant.ERROR_OCCURRED_ON_USER_CREATION, userRequest.getName()));
         }
-        return userMapper.toDto(userCreated);
+        return userDtoMapper.toDto(userCreated);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class UserManagementService implements UserService {
         List<User> users = userRepositoryPort.getAll();
         return users
                 .stream()
-                .map(UserMapper::toDto)
+                .map(userDtoMapper::toDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -74,7 +76,7 @@ public class UserManagementService implements UserService {
         if(userFound == null) {
             throw new UserException(HttpStatus.NOT_FOUND, String.format(UserConstant.USER_NOT_FOUND, id));
         }
-        return UserMapper.toDto(userFound);
+        return userDtoMapper.toDto(userFound);
     }
 
     @Override
@@ -88,6 +90,6 @@ public class UserManagementService implements UserService {
             throw new UserException(HttpStatus.NOT_FOUND, String.format(WalletConstant.WALLET_DOES_NOT_EXIST, walletId));
         }
         userFound.getWallets().add(walletFound);
-        return userMapper.toDto(userRepositoryPort.update(userFound));
+        return userDtoMapper.toDto(userRepositoryPort.update(userFound));
     }
 }

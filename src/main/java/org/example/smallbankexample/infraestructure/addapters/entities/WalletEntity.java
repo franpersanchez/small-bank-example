@@ -27,7 +27,7 @@ public class WalletEntity {
     private BigDecimal balance;
 
     @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<TransactionEntity> transactions = new ArrayList<>();
+    private List<TransactionEntity> transactions;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

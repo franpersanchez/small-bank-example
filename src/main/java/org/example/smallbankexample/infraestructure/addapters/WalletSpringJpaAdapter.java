@@ -1,10 +1,7 @@
 package org.example.smallbankexample.infraestructure.addapters;
 
-import org.example.smallbankexample.application.mapper.WalletMapper;
-import org.example.smallbankexample.domain.models.User;
 import org.example.smallbankexample.domain.models.Wallet;
 import org.example.smallbankexample.domain.ports.port.WalletRepositoryPort;
-import org.example.smallbankexample.infraestructure.addapters.entities.UserEntity;
 import org.example.smallbankexample.infraestructure.addapters.entities.WalletEntity;
 import org.example.smallbankexample.infraestructure.addapters.mapper.UserDboMapper;
 import org.example.smallbankexample.infraestructure.addapters.mapper.WalletDboMapper;
@@ -22,13 +19,11 @@ public class WalletSpringJpaAdapter implements WalletRepositoryPort {
     private final WalletRepository walletRepository;
     private final WalletDboMapper walletDboMapper;
     private final UserDboMapper userDboMapper;
-    private final WalletMapper walletMapper;
 
-    public WalletSpringJpaAdapter(WalletRepository walletRepository, WalletDboMapper walletDboMapper, UserDboMapper userDboMapper, WalletMapper walletMapper) {
+    public WalletSpringJpaAdapter(WalletRepository walletRepository, WalletDboMapper walletDboMapper, UserDboMapper userDboMapper) {
         this.walletRepository = walletRepository;
         this.walletDboMapper = walletDboMapper;
         this.userDboMapper = userDboMapper;
-        this.walletMapper = walletMapper;
     }
 
 

@@ -13,15 +13,16 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public final class User {
+public class User {
+
     private Long id;
     private String name;
     private String email;
     private String password;
     private List<Wallet> wallets = new ArrayList<>();
 
-    public User(String username, String email, String password) {
-        this.name = username;
+    public User(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
     }

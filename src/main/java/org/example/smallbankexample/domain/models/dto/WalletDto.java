@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class WalletDto {
+
     private Long id;
     private String name;
     private BigDecimal balance;

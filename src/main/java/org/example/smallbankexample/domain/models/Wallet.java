@@ -5,17 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public final class Wallet {
+public class Wallet {
+
     private Long id;
     private String name;
     private BigDecimal balance = BigDecimal.ZERO;

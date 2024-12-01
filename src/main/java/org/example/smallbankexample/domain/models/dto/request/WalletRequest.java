@@ -14,8 +14,6 @@ import java.util.List;
 @Setter
 public class WalletRequest {
 
-    private Long id;
     private String name;
-    private BigDecimal balance;
-    private List<String> transactions;
+
 }

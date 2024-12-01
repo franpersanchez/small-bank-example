@@ -1,58 +1,19 @@
 package org.example.smallbankexample.infraestructure.addapters.mapper;
 
-import org.example.smallbankexample.domain.models.Transaction;
 import org.example.smallbankexample.domain.models.Wallet;
-import org.example.smallbankexample.infraestructure.addapters.entities.TransactionEntity;
 import org.example.smallbankexample.infraestructure.addapters.entities.WalletEntity;
-import org.springframework.stereotype.Component;
+import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.util.List;
-import java.util.stream.Collectors;
+@Mapper(componentModel = "spring")
+public interface WalletDboMapper {
 
-@Component
-public class WalletDboMapper {
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "balance", target = "balance")
+    WalletEntity toDbo(Wallet domain);
 
-    public static WalletEntity toDbo(Wallet wallet) {
-        if (wallet == null) {
-            return null;
-        }
-        return new WalletEntity(
-                wallet.getId(),
-                wallet.getName(),
-                wallet.getBalance(),
-                null,
-                null
-        );
-    }
-
-      public Wallet toDomain(WalletEntity walletEntity) {
-        if (walletEntity == null) {
-            return null;
-        }
-        List<Transaction> transactions = walletEntity.getTransactions() != null
-                ? walletEntity.getTransactions().stream()
-                .map(this::toDomain)
-                .collect(Collectors.toList())
-                : null;
-
-        return new Wallet(
-                walletEntity.getId(),
-                walletEntity.getName(),
-                walletEntity.getBalance(),
-                transactions
-        );
-    }
-
-    private Transaction toDomain(TransactionEntity transactionEntity) {
-        if (transactionEntity == null) {
-            return null;
-        }
-
-        return new Transaction(
-                transactionEntity.getId(),
-                transactionEntity.getAmount(),
-                transactionEntity.getDescription(),
-                transactionEntity.getTransactionDate()
-        );
-    }
+    @InheritInverseConfiguration
+    Wallet toDomain(WalletEntity entity);
 }
