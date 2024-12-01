@@ -52,24 +52,24 @@ docker-compose up
 ## Ejemplos funcionales
 - POST /users: Crear un usuario.
 
-![img.png](img.png)
+![img.png](public/img.png)
 
 - POST /wallets: Crear una nueva cuenta (wallet).
 
-![img_1.png](img_1.png)
+![img_1.png](public/img_1.png)
 
 - POST /users/{id}/{wallet}: Asignar una cuenta (wallet) a un usuario.
 
-![img_2.png](img_2.png)
+![img_2.png](public/img_2.png)
 
 - POST /deposit/{id}/{amount}: Depositar dinero en una cuenta.
-![img_3.png](img_3.png)
+![img_3.png](public/img_3.png)
 
 - GET /wallets/{id}: Consultar el saldo de una cuenta (balance y movimientos).
-![img_4.png](img_4.png)
+![img_4.png](public/img_4.png)
 
 - POST /transfer/{idOrigin}/{amount}/{idDestination}: Transferir dinero entre cuentas.
-- ![img_5.png](img_5.png)
+- ![img_5.png](public/img_5.png)
 
 
 
