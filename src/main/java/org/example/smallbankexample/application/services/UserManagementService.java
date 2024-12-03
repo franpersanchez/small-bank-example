@@ -27,8 +27,6 @@ public class UserManagementService implements UserService {
     private final UserRequestMapper userRequestMapper;
     private final WalletRepositoryPort walletRepositoryPort;
 
-
-    @Autowired
     public UserManagementService(UserRepositoryPort userRepositoryPort, UserDtoMapper userDtoMapper, UserRequestMapper userRequestMapper, WalletRepositoryPort walletRepositoryPort) {
         this.userRepositoryPort = userRepositoryPort;
         this.userDtoMapper = userDtoMapper;
